@@ -1,6 +1,6 @@
 # caseconv
 
-[![Tests](https://github.com/Kcrong/caseconv/actions/workflows/test.yml/badge.svg)](https://github.com/Kcrong/caseconv/actions/workflows/test.yml)
+[![Lint and Test](https://github.com/Kcrong/caseconv/actions/workflows/lint.yml/badge.svg)](https://github.com/Kcrong/caseconv/actions/workflows/lint.yml)
 
 `caseconv` is a Go package for string case conversions. It supports conversions between snake_case, kebab-case, camelCase, and PascalCase.
 
