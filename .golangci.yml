@@ -32,8 +32,6 @@ linters-settings:
       - TODO
       - FIXME
       - BUG
-  shadow:
-    strict: true
 
 linters:
   enable-all: true
@@ -60,6 +58,10 @@ output:
   formats:
     - format: colored-line-number
       path: stdout
+    - format: json
+      path: lint-report.json
+    - format: checkstyle
+      path: lint-report.xml
   print-issued-lines: true
   print-linter-name: true
   path-prefix: ""
