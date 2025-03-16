@@ -32,8 +32,6 @@ linters-settings:
       - TODO
       - FIXME
       - BUG
-  shadow:
-    strict: true
 
 linters:
   enable-all: true

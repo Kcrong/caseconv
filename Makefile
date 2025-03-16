@@ -11,8 +11,8 @@ test:
 	$(GOTEST) -v -race -cover ./...
 
 lint:
-	golangci-lint run --timeout=5m
+	golangci-lint run --config .golangci.yml
 
 format:
-	golangci-lint run --fix --timeout=5m
+	golangci-lint run --fix --timeout=5m --config .golangci.yml
 	$(GOMOD) tidy
