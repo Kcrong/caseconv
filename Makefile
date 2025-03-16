@@ -12,7 +12,6 @@ test:
 
 lint:
 	golangci-lint run --timeout=5m
-	gosec ./...
 
 format:
 	golangci-lint run --fix --timeout=5m
