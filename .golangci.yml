@@ -1,0 +1,71 @@
+linters-settings:
+  govet:
+    enable-all: true
+  gocyclo:
+    min-complexity: 10
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 3
+    min-occurrences: 2
+  misspell:
+    locale: US
+  lll:
+    line-length: 120
+  goimports:
+    local-prefixes: github.com/org/project
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+  funlen:
+    lines: 60
+    statements: 40
+  gocognit:
+    min-complexity: 10
+  godox:
+    keywords:
+      - NOTE
+      - TODO
+      - FIXME
+      - BUG
+  shadow:
+    strict: true
+
+linters:
+  enable-all: true
+  disable:
+    - tenv  # replaced by usetesting
+
+issues:
+  exclude-dirs:
+    - vendor
+    - third_party
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - dupl
+        - gosec
+        - goconst
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  new: true
+  new-from-rev: HEAD
+  uniq-by-line: false
+
+output:
+  formats:
+    - format: colored-line-number
+      path: stdout
+  print-issued-lines: true
+  print-linter-name: true
+  path-prefix: ""
+  sort-results: true
+  sort-order:
+    - severity
+    - linter
+    - file
+  show-stats: true 

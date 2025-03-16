@@ -12,7 +12,7 @@ type CaseType int
 
 const (
 	// Snake represents snake_case
-	Snake CaseType = iota
+	Snake CaseType = iota + 1
 	// Kebab represents kebab-case
 	Kebab
 	// Camel represents camelCase
@@ -37,17 +37,27 @@ func (c CaseType) String() string {
 	}
 }
 
-// StringConverter provides a fluent interface for string case conversion
-type StringConverter struct {
+type Converter interface {
+	To(caseType CaseType) string
+	ToSnake() string
+	ToKebab() string
+	ToCamel() string
+	ToPascal() string
+}
+
+// converter provides a fluent interface for string case conversion.
+type converter struct {
 	value     string
 	separator rune
 	firstCap  bool
 	wordCap   bool
 }
 
+var _ Converter = (*converter)(nil)
+
 // NewConverter creates a new string converter
-func NewConverter(s string) *StringConverter {
-	return &StringConverter{
+func NewConverter(s string) Converter {
+	return &converter{
 		value:     s,
 		separator: 0,
 		firstCap:  false,
@@ -56,7 +66,7 @@ func NewConverter(s string) *StringConverter {
 }
 
 // convert performs the actual case conversion
-func (c *StringConverter) convert() string {
+func (c *converter) convert() string {
 	s := strings.TrimSpace(c.value)
 	if s == "" {
 		return s
@@ -149,7 +159,7 @@ func (c *StringConverter) convert() string {
 }
 
 // ToSnake converts the string to snake_case
-func (c *StringConverter) ToSnake() string {
+func (c *converter) ToSnake() string {
 	c.separator = '_'
 	c.firstCap = false
 	c.wordCap = false
@@ -157,7 +167,7 @@ func (c *StringConverter) ToSnake() string {
 }
 
 // ToKebab converts the string to kebab-case
-func (c *StringConverter) ToKebab() string {
+func (c *converter) ToKebab() string {
 	c.separator = '-'
 	c.firstCap = false
 	c.wordCap = false
@@ -165,7 +175,7 @@ func (c *StringConverter) ToKebab() string {
 }
 
 // ToCamel converts the string to camelCase
-func (c *StringConverter) ToCamel() string {
+func (c *converter) ToCamel() string {
 	c.separator = 0
 	c.firstCap = false
 	c.wordCap = true
@@ -173,7 +183,7 @@ func (c *StringConverter) ToCamel() string {
 }
 
 // ToPascal converts the string to PascalCase
-func (c *StringConverter) ToPascal() string {
+func (c *converter) ToPascal() string {
 	c.separator = 0
 	c.firstCap = true
 	c.wordCap = true
@@ -181,7 +191,7 @@ func (c *StringConverter) ToPascal() string {
 }
 
 // To converts the string to the specified case type
-func (c *StringConverter) To(caseType CaseType) string {
+func (c *converter) To(caseType CaseType) string {
 	switch caseType {
 	case Snake:
 		return c.ToSnake()
@@ -197,7 +207,7 @@ func (c *StringConverter) To(caseType CaseType) string {
 }
 
 // String returns the current value of the converter
-func (c *StringConverter) String() string {
+func (c *converter) String() string {
 	return c.value
 }
 

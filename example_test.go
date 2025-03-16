@@ -6,11 +6,22 @@ import (
 	"github.com/Kcrong/caseconv"
 )
 
+func ExampleNewConverter_reuse() {
+	s := "hello_world"
+
+	conv := caseconv.NewConverter(s)
+	fmt.Println(conv.ToPascal())
+	fmt.Println(conv.ToKebab())
+	// Output:
+	// HelloWorld
+	// hello-world
+}
+
 func ExampleNewConverter_methodChaining() {
 	s := "hello_world"
-	result := caseconv.NewConverter(s).ToPascal()
-	fmt.Println(result)
-	// Output: HelloWorld
+	fmt.Println(caseconv.NewConverter(s).ToPascal())
+	// Output:
+	// HelloWorld
 }
 
 func ExampleNewConverter_packageLevelFunctions() {
