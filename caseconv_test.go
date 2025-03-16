@@ -16,7 +16,6 @@ func TestToSnakeCase(t *testing.T) {
 	}
 
 	for input, expected := range cases {
-		input, expected := input, expected
 		t.Run(input, func(t *testing.T) {
 			t.Parallel()
 			result := ToSnakeCase(input)
@@ -41,7 +40,6 @@ func TestToKebabCase(t *testing.T) {
 	}
 
 	for input, expected := range cases {
-		input, expected := input, expected
 		t.Run(input, func(t *testing.T) {
 			t.Parallel()
 			result := ToKebabCase(input)
@@ -66,7 +64,6 @@ func TestToCamelCase(t *testing.T) {
 	}
 
 	for input, expected := range cases {
-		input, expected := input, expected
 		t.Run(input, func(t *testing.T) {
 			t.Parallel()
 			result := ToCamelCase(input)
@@ -91,7 +88,6 @@ func TestToPascalCase(t *testing.T) {
 	}
 
 	for input, expected := range cases {
-		input, expected := input, expected
 		t.Run(input, func(t *testing.T) {
 			t.Parallel()
 			result := ToPascalCase(input)
